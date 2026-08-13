@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Yêu cầu xóa dữ liệu – Daily Tracker</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #1a1a1a;
+    --muted: #5b5b5b;
+    --border: #e2e2e2;
+    --accent: #4F5DFF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121212;
+      --fg: #f0f0f0;
+      --muted: #a8a8a8;
+      --border: #2c2c2c;
+      --accent: #8b93ff;
+    }
+  }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+  }
+  h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+  h2 { font-size: 1.15rem; margin-top: 2.2rem; color: var(--accent); }
+  .updated { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+  ul, ol { padding-left: 1.3rem; }
+  li { margin-bottom: 0.5rem; }
+  a { color: var(--accent); }
+  .box {
+    margin-top: 1rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+  th, td { text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: 0.85rem; }
+  footer { margin-top: 3rem; color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<h1>Yêu cầu xóa dữ liệu – Daily Tracker</h1>
+<p class="updated">Cập nhật lần cuối: 13/08/2026 · Nhà phát triển: dongpv168</p>
+
+<p>
+  Trang này hướng dẫn cách yêu cầu xóa dữ liệu trong ứng dụng <strong>Daily Tracker</strong>
+  (nhà phát triển <strong>dongpv168</strong>), theo hai mức độ: xóa từng phần ngay trong ứng
+  dụng, hoặc xóa toàn bộ tài khoản.
+</p>
+
+<h2>Cách 1 — Xóa từng phần dữ liệu ngay trong ứng dụng (không cần liên hệ)</h2>
+<p>
+  Bạn có thể tự xóa từng mục dữ liệu bất cứ lúc nào, có hiệu lực ngay lập tức, không cần gửi
+  yêu cầu:
+</p>
+<ol>
+  <li>Mở ứng dụng Daily Tracker, đăng nhập vào tài khoản của bạn.</li>
+  <li>Vào tab <strong>Việc cần làm</strong>, <strong>Thói quen</strong> hoặc <strong>Chi
+    tiêu</strong>.</li>
+  <li>Bấm biểu tượng thùng rác 🗑️ ở mục muốn xóa (việc cần làm, thói quen, hoặc giao dịch
+    thu/chi cụ thể).</li>
+  <li>Dữ liệu bị xóa ngay lập tức và vĩnh viễn khỏi máy chủ.</li>
+</ol>
+
+<h2>Cách 2 — Xóa toàn bộ tài khoản và dữ liệu</h2>
+<p>
+  Nếu muốn xóa toàn bộ tài khoản (không chỉ từng mục), gửi yêu cầu qua email:
+</p>
+<div class="box">
+  <strong>Bước 1.</strong> Gửi email tới
+  <a href="mailto:dongpv168@gmail.com?subject=Y%C3%AAu%20c%E1%BA%A7u%20x%C3%B3a%20t%C3%A0i%20kho%E1%BA%A3n%20Daily%20Tracker">dongpv168@gmail.com</a>,
+  tiêu đề <em>"Yêu cầu xóa tài khoản Daily Tracker"</em>, nội dung ghi rõ địa chỉ email bạn
+  dùng để đăng ký trong ứng dụng.<br /><br />
+  <strong>Bước 2.</strong> Chúng tôi xác minh yêu cầu và xử lý xóa trong vòng
+  <strong>7 ngày làm việc</strong> kể từ khi nhận được email.<br /><br />
+  <strong>Bước 3.</strong> Bạn sẽ nhận email xác nhận khi việc xóa hoàn tất.
+</div>
+
+<h2>Dữ liệu nào bị xóa, dữ liệu nào được giữ lại</h2>
+<table>
+  <tr><th>Dữ liệu</th><th>Kết quả khi xóa toàn bộ tài khoản</th></tr>
+  <tr><td>Tài khoản đăng nhập (email, mật khẩu — Firebase Authentication)</td><td>Xóa vĩnh viễn</td></tr>
+  <tr><td>Việc cần làm</td><td>Xóa vĩnh viễn</td></tr>
+  <tr><td>Thói quen &amp; lịch sử check-off</td><td>Xóa vĩnh viễn</td></tr>
+  <tr><td>Giao dịch thu/chi</td><td>Xóa vĩnh viễn</td></tr>
+</table>
+<p>
+  Chúng tôi <strong>không giữ lại bản sao nào</strong> của dữ liệu trên sau khi hoàn tất xử lý
+  yêu cầu xóa — không có hệ thống sao lưu/lưu trữ riêng ngoài Firestore đang vận hành ứng dụng.
+</p>
+
+<footer>Daily Tracker — dongpv168 · Xem thêm <a href="./privacy-policy.html">Chính sách quyền riêng tư</a></footer>
+
+</body>
+</html>
