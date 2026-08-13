@@ -32,6 +32,11 @@ vì đây là khai báo gắn với tài khoản nhà phát triển của bạn 
 
 Đây là các mục bắt buộc trước khi publish, kể cả lên Internal testing.
 
+### 3a0. App access
+App yêu cầu đăng nhập (email/mật khẩu) nên chọn **"All or some functionality is
+restricted"** và cung cấp tài khoản demo cho reviewer. Tài khoản đã tạo sẵn — xem file
+`docs/reviewer-account.txt` (không commit vì chứa mật khẩu, chỉ có ở máy bạn).
+
 ### 3a. Privacy policy
 URL: `https://dongpv168-afk.github.io/daily-tracker/privacy-policy.html`
 
