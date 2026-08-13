@@ -86,9 +86,10 @@ Tất cả chọn **"No"** — app không thuộc các diện này. App **không
 
 **Testing → Internal testing → Create new release**
 
-1. Upload file `.aab` đã build:
-   `https://expo.dev/artifacts/eas/XbZQ3Tj6DCXt2BYfUvXI-95S6Y7kPMQESWb5M2ht62w.aab`
-   (tải về máy trước rồi upload, hoặc dùng lệnh `eas submit` — xem mục 5)
+1. Upload file `.aab` đã build (đã tải sẵn tại `docs/daily-tracker-1.0.0-build3.aab`,
+   icon bản gốc, versionCode 3):
+   `https://expo.dev/artifacts/eas/wXjydrBCOciqULsWpM1SVuuIMnEXBIDqw_1x5OHIEqo.aab`
+   (hoặc dùng lệnh `eas submit` — xem mục 5)
 2. Release name: tự động điền theo version (`1.0.0 (2)`)
 3. Release notes (Tiếng Việt): ví dụ `Phiên bản đầu tiên của Daily Tracker.`
 4. Thêm người test nội bộ (email Gmail của bạn hoặc người khác) ở tab **Testers**
