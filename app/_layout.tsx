@@ -1,0 +1,52 @@
+import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
+import { ActivityIndicator, StyleSheet, useColorScheme } from 'react-native';
+import { Screen } from '@/components/common/Screen';
+import { useAuth, useAuthListener } from '@/hooks/useAuth';
+import { useThemeColors } from '@/hooks/useThemeColors';
+import { setupNotificationChannel } from '@/services/notifications.service';
+
+export default function RootLayout() {
+  const scheme = useColorScheme();
+  const colors = useThemeColors();
+  useAuthListener();
+  const { isInitializing, isSignedIn } = useAuth();
+
+  useEffect(() => {
+    setupNotificationChannel();
+  }, []);
+
+  if (isInitializing) {
+    // Waiting on the first onAuthStateChanged callback (session restore from storage).
+    return (
+      <Screen style={styles.loading}>
+        <ActivityIndicator color={colors.primary} />
+      </Screen>
+    );
+  }
+
+  return (
+    <>
+      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Protected guard={isSignedIn}>
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="todo/[id]" options={{ presentation: 'modal' }} />
+          <Stack.Screen name="habit/[id]" options={{ presentation: 'modal' }} />
+          <Stack.Screen name="transaction/[id]" options={{ presentation: 'modal' }} />
+        </Stack.Protected>
+        <Stack.Protected guard={!isSignedIn}>
+          <Stack.Screen name="(auth)" />
+        </Stack.Protected>
+      </Stack>
+    </>
+  );
+}
+
+const styles = StyleSheet.create({
+  loading: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
