@@ -13,7 +13,6 @@
     },
     "android": {
       "package": "com.dongpv168.dailytracker",
-      "versionCode": 1,
       "softwareKeyboardLayoutMode": "resize",
       "adaptiveIcon": {
         "backgroundColor": "#4F5DFF",
@@ -28,6 +27,13 @@
     "plugins": [
       "expo-router",
       "@react-native-community/datetimepicker"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "424c60e6-bbe8-45cd-8aed-24e9082d0774"
+      }
+    },
+    "owner": "mrdongpv168"
   }
 }
