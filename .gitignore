@@ -41,3 +41,6 @@ THONG TIN FIRE CONSOLE.txt
 # generated native folders
 /ios
 /android
+
+# raw phone screenshots (uncropped originals) — final ones live in docs/screenshots-cropped/
+/docs/screenshots/
