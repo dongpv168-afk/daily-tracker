@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chính sách quyền riêng tư – Daily Tracker</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #1a1a1a;
+    --muted: #5b5b5b;
+    --border: #e2e2e2;
+    --accent: #4F5DFF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121212;
+      --fg: #f0f0f0;
+      --muted: #a8a8a8;
+      --border: #2c2c2c;
+      --accent: #8b93ff;
+    }
+  }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+  }
+  h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+  h2 { font-size: 1.15rem; margin-top: 2.2rem; color: var(--accent); }
+  .updated { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+  ul { padding-left: 1.3rem; }
+  li { margin-bottom: 0.4rem; }
+  a { color: var(--accent); }
+  .contact {
+    margin-top: 2.5rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  footer { margin-top: 3rem; color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<h1>Chính sách quyền riêng tư – Daily Tracker</h1>
+<p class="updated">Cập nhật lần cuối: 13/08/2026</p>
+
+<p>
+  Daily Tracker ("ứng dụng") là ứng dụng di động giúp quản lý việc cần làm, theo dõi
+  thói quen (habit) và ghi chép thu chi cá nhân, do nhà phát triển độc lập
+  <strong>dongpv168</strong> xây dựng. Chính sách này giải thích ứng dụng thu thập,
+  sử dụng và bảo vệ dữ liệu của bạn như thế nào.
+</p>
+
+<h2>1. Dữ liệu chúng tôi thu thập</h2>
+<ul>
+  <li><strong>Thông tin tài khoản:</strong> địa chỉ email và mật khẩu bạn dùng để
+    đăng ký/đăng nhập, xử lý qua Firebase Authentication. Ứng dụng không tự lưu trữ
+    mật khẩu dạng gốc — việc này do Firebase Authentication (Google) đảm nhiệm.</li>
+  <li><strong>Nội dung bạn tạo trong ứng dụng:</strong> việc cần làm, thói quen và
+    lịch sử check-off, các giao dịch thu/chi (số tiền, danh mục, ghi chú, ngày).
+    Toàn bộ dữ liệu này được lưu trên Firebase Firestore, gắn với tài khoản của
+    riêng bạn.</li>
+</ul>
+
+<h2>2. Dữ liệu chúng tôi KHÔNG thu thập</h2>
+<ul>
+  <li>Không có quảng cáo, không có SDK theo dõi/phân tích hành vi của bên thứ ba.</li>
+  <li>Không thu thập vị trí, danh bạ, ảnh, hay dữ liệu thiết bị ngoài những gì cần để
+    ứng dụng vận hành.</li>
+  <li>Không bán, cho thuê hay chia sẻ dữ liệu cá nhân của bạn cho bên thứ ba vì mục
+    đích quảng cáo hay thương mại.</li>
+</ul>
+
+<h2>3. Thông báo nhắc nhở</h2>
+<p>
+  Ứng dụng dùng thông báo cục bộ (local notifications) trên chính điện thoại của bạn
+  để nhắc việc cần làm và thói quen. Các thông báo này được lên lịch và xử lý ngay
+  trên máy — ứng dụng không gửi nội dung nhắc nhở qua máy chủ và không thu thập mã
+  push token của thiết bị.
+</p>
+
+<h2>4. Lưu trữ và bảo mật</h2>
+<p>
+  Dữ liệu được lưu trên hạ tầng Firebase (Google Cloud) — Cloud Firestore và Firebase
+  Authentication. Kết nối giữa ứng dụng và máy chủ được mã hóa qua HTTPS. Quy tắc bảo
+  mật Firestore (Firestore Security Rules) đảm bảo mỗi tài khoản chỉ có thể đọc và
+  ghi dữ liệu của chính mình — không ai khác, kể cả người dùng khác của ứng dụng, có
+  thể truy cập dữ liệu của bạn.
+</p>
+
+<h2>5. Quyền của bạn</h2>
+<ul>
+  <li>Xem, sửa, xóa từng việc cần làm / thói quen / giao dịch trực tiếp trong ứng dụng
+    bất cứ lúc nào.</li>
+  <li>Yêu cầu xóa toàn bộ tài khoản và dữ liệu liên quan bằng cách liên hệ email bên
+    dưới — chúng tôi sẽ xử lý trong thời gian hợp lý.</li>
+</ul>
+
+<h2>6. Trẻ em</h2>
+<p>
+  Ứng dụng không hướng đến và không cố ý thu thập dữ liệu từ trẻ em dưới 13 tuổi.
+</p>
+
+<h2>7. Thay đổi chính sách</h2>
+<p>
+  Chính sách này có thể được cập nhật theo thời gian. Ngày cập nhật gần nhất luôn
+  hiển thị ở đầu trang.
+</p>
+
+<div class="contact">
+  <strong>Liên hệ:</strong><br />
+  Có câu hỏi về quyền riêng tư hoặc muốn yêu cầu xóa dữ liệu, vui lòng liên hệ:<br />
+  <a href="mailto:dongpv168@gmail.com">dongpv168@gmail.com</a>
+</div>
+
+<footer>Daily Tracker — dongpv168</footer>
+
+</body>
+</html>
