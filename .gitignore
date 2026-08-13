@@ -44,3 +44,7 @@ THONG TIN FIRE CONSOLE.txt
 
 # raw phone screenshots (uncropped originals) — final ones live in docs/screenshots-cropped/
 /docs/screenshots/
+
+# build artifacts (large binaries, re-downloadable from EAS) — not for git
+*.aab
+*.apk
