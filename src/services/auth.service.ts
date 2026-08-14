@@ -1,5 +1,6 @@
 import {
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -26,6 +27,22 @@ export async function signIn(email: string, password: string) {
 
 export async function signOutUser() {
   await signOut(auth);
+}
+
+/**
+ * Sends a password reset email. Resolves silently even if the email isn't
+ * registered, so the UI can show one generic message and avoid leaking
+ * which emails have an account (standard practice for reset flows).
+ */
+export async function resetPassword(email: string) {
+  try {
+    await sendPasswordResetEmail(auth, email.trim());
+  } catch (error) {
+    const code = (error as { code?: string })?.code ?? '';
+    if (code !== 'auth/user-not-found') {
+      throw error;
+    }
+  }
 }
 
 /** Maps common Firebase Auth error codes to Vietnamese messages for display. */

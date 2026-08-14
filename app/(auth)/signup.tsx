@@ -12,6 +12,7 @@ export default function SignupScreen() {
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -23,6 +24,10 @@ export default function SignupScreen() {
     }
     if (password.length < 6) {
       setError('Mật khẩu tối thiểu 6 ký tự.');
+      return;
+    }
+    if (password !== confirmPassword) {
+      setError('Mật khẩu nhập lại không khớp.');
       return;
     }
     setLoading(true);
@@ -58,6 +63,13 @@ export default function SignupScreen() {
         onChangeText={setPassword}
         secureTextEntry
         placeholder="Tối thiểu 6 ký tự"
+      />
+      <FormInput
+        label="Nhập lại mật khẩu"
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
+        secureTextEntry
+        placeholder="Nhập lại mật khẩu"
       />
       {error ? <Text style={[styles.error, { color: colors.danger }]}>{error}</Text> : null}
 

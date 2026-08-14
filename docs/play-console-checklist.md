@@ -63,29 +63,49 @@ Vào **App content → Content ratings → Start questionnaire**
   (app không có tính năng mạng xã hội/chat)
 - Kết quả dự kiến: **PEGI 3 / ESRB Everyone / Mọi lứa tuổi**
 
-### 3c. Data safety form
-Vào **App content → Data safety → Start**
+### 3c. An toàn dữ liệu (Data safety form)
+Vào **Nội dung ứng dụng (App content) → An toàn dữ liệu (Data safety) → Bắt đầu**
 
-Câu hỏi mở đầu:
-- App có thu thập hoặc chia sẻ dữ liệu người dùng không? → **Yes**
-- Dữ liệu có được mã hóa khi truyền không? → **Yes** (HTTPS qua Firebase)
-- App có cách để người dùng yêu cầu xóa dữ liệu không? → **Yes**
-  → Account deletion URL: `https://dongpv168-afk.github.io/daily-tracker/privacy-policy.html`
-  (mục "Quyền của bạn" trong trang, có email liên hệ để yêu cầu xóa)
+**Trang "Thu thập dữ liệu và bảo mật"** (Data collection and security):
+- "Ứng dụng của bạn có thu thập hoặc chia sẻ loại dữ liệu người dùng bắt buộc nào không?"
+  → **Có**
+- "Tất cả dữ liệu người dùng do ứng dụng thu thập có được mã hóa khi truyền đi không?"
+  → **Có** (HTTPS qua Firebase)
+- "Bạn có cung cấp cách để người dùng yêu cầu xóa dữ liệu của họ không?" → **Có**
+  → URL: `https://dongpv168-afk.github.io/daily-tracker/data-deletion.html`
+  (trang riêng, hướng dẫn xóa từng phần trong app + cách yêu cầu xóa toàn bộ tài khoản)
+- Nếu có câu "Ứng dụng có cho phép người dùng xóa một phần hoặc toàn bộ dữ liệu ngay cả khi
+  không xóa tài khoản không?" → **Có** (nút thùng rác xóa từng việc/thói quen/giao dịch,
+  có hiệu lực ngay)
 
-**Loại dữ liệu thu thập** — tick đúng các mục sau, còn lại để trống:
+**Trang "Loại dữ liệu"** (Data types) — chỉ tick đúng 3 mục sau, còn lại **để trống hết**:
+- **Thông tin cá nhân** (Personal info) → tick **Địa chỉ email** (Email address)
+- **Thông tin tài chính** (Financial info) → tick **Thông tin tài chính khác**
+  (Other financial info — là khoản thu/chi người dùng tự nhập)
+- **Hoạt động trong ứng dụng** (App activity) → tick **Nội dung khác do người dùng tạo**
+  (Other user-generated content — việc cần làm, thói quen)
 
-| Category | Type | Collected? | Shared? | Mục đích | Bắt buộc? |
-|---|---|---|---|---|---|
-| Personal info | Email address | ✅ | ❌ | App functionality, Account management | Có |
-| Financial info | Other financial info (thu/chi người dùng nhập) | ✅ | ❌ | App functionality | Không (tính năng tùy chọn) |
-| App activity | Other user-generated content (việc cần làm, thói quen) | ✅ | ❌ | App functionality | Không |
+**Với mỗi loại dữ liệu vừa tick**, trả lời các câu hỏi chi tiết:
 
-Tất cả dữ liệu: **"Data is encrypted in transit"** = Yes, **"Collected"**, gắn với danh tính
-người dùng (linked, vì gắn theo tài khoản), **không** bán/chia sẻ cho bên thứ 3.
+| Câu hỏi | Địa chỉ email | Thông tin tài chính khác | Nội dung do người dùng tạo |
+|---|---|---|---|
+| Dữ liệu này được thu thập, chia sẻ, hay cả hai? | Chỉ thu thập | Chỉ thu thập | Chỉ thu thập |
+| Dữ liệu này có được xử lý tạm thời không? (ephemerally) | Không | Không | Không |
+| Việc thu thập là bắt buộc hay không bắt buộc? | **Bắt buộc** | **Không bắt buộc** | **Không bắt buộc** |
+| Vì sao thu thập dữ liệu này? | Chức năng ứng dụng, Quản lý tài khoản | Chức năng ứng dụng | Chức năng ứng dụng |
 
-Các mục khác (Location, Photos/videos, Contacts, Web browsing history, Device IDs...) →
+Lý do Bắt buộc/Không bắt buộc: phải đăng nhập bằng email mới dùng được app, nhưng người dùng
+không bắt buộc phải nhập khoản thu/chi hay việc/thói quen nào cả — đó là tính năng họ chủ
+động dùng.
+
+Tất cả dữ liệu: gắn với danh tính người dùng (liên kết — linked, vì gắn theo tài khoản),
+**không** bán/chia sẻ cho bên thứ ba.
+
+Các mục khác (Vị trí, Ảnh/video, Danh bạ, Lịch sử duyệt web, Mã thiết bị, Tin nhắn...) →
 **không tick**, vì app không thu thập.
+
+**Trang "Đánh giá bảo mật độc lập"** (Independent security review) → bỏ qua / chọn **Không**
+(không bắt buộc, không áp dụng cho app nhỏ).
 
 ### 3d. Government apps / Ads / News apps / COVID-19 apps
 Tất cả chọn **"No"** — app không thuộc các diện này. App **không có quảng cáo** nên phần

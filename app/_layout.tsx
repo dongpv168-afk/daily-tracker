@@ -1,14 +1,14 @@
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
-import { ActivityIndicator, StyleSheet, useColorScheme } from 'react-native';
+import { ActivityIndicator, StyleSheet } from 'react-native';
 import { Screen } from '@/components/common/Screen';
 import { useAuth, useAuthListener } from '@/hooks/useAuth';
-import { useThemeColors } from '@/hooks/useThemeColors';
+import { useEffectiveScheme, useThemeColors } from '@/hooks/useThemeColors';
 import { setupNotificationChannel } from '@/services/notifications.service';
 
 export default function RootLayout() {
-  const scheme = useColorScheme();
+  const scheme = useEffectiveScheme();
   const colors = useThemeColors();
   useAuthListener();
   const { isInitializing, isSignedIn } = useAuth();

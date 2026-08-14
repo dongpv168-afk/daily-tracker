@@ -1,15 +1,25 @@
+import Constants from 'expo-constants';
 import { useState } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { PrimaryButton } from '@/components/common/PrimaryButton';
 import { Screen } from '@/components/common/Screen';
 import { useAuth } from '@/hooks/useAuth';
 import { useThemeColors } from '@/hooks/useThemeColors';
 import { signOutUser } from '@/services/auth.service';
+import { ThemePreference, useThemeStore } from '@/store/themeStore';
+
+const THEME_OPTIONS: { value: ThemePreference; label: string }[] = [
+  { value: 'system', label: 'Theo hệ thống' },
+  { value: 'light', label: 'Sáng' },
+  { value: 'dark', label: 'Tối' },
+];
 
 export default function SettingsScreen() {
   const colors = useThemeColors();
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
+  const preference = useThemeStore((state) => state.preference);
+  const setPreference = useThemeStore((state) => state.setPreference);
 
   async function handleSignOut() {
     setLoading(true);
@@ -31,8 +41,30 @@ export default function SettingsScreen() {
 
       <PrimaryButton title="Đăng xuất" onPress={handleSignOut} loading={loading} variant="ghost" />
 
-      <Text style={[styles.note, { color: colors.textMuted }]}>
-        Thông báo, tiền tệ, theme sẽ có ở Phase 7.
+      <Text style={[styles.label, { color: colors.textMuted, marginTop: 32 }]}>Giao diện</Text>
+      <View style={styles.themeRow}>
+        {THEME_OPTIONS.map((option) => {
+          const selected = option.value === preference;
+          return (
+            <Pressable
+              key={option.value}
+              onPress={() => setPreference(option.value)}
+              style={[
+                styles.themeChip,
+                {
+                  backgroundColor: selected ? colors.primary : colors.surface,
+                  borderColor: selected ? colors.primary : colors.border,
+                },
+              ]}
+            >
+              <Text style={[styles.themeChipText, { color: selected ? '#fff' : colors.text }]}>{option.label}</Text>
+            </Pressable>
+          );
+        })}
+      </View>
+
+      <Text style={[styles.version, { color: colors.textMuted }]}>
+        Daily Tracker phiên bản {Constants.expoConfig?.version ?? '—'}
       </Text>
     </Screen>
   );
@@ -58,8 +90,24 @@ const styles = StyleSheet.create({
   value: {
     fontSize: 16,
   },
-  note: {
-    fontSize: 13,
-    marginTop: 32,
+  themeRow: {
+    flexDirection: 'row',
+    gap: 8,
+    marginTop: 4,
+  },
+  themeChip: {
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+  },
+  themeChipText: {
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  version: {
+    fontSize: 12,
+    marginTop: 40,
+    textAlign: 'center',
   },
 });

@@ -45,6 +45,9 @@ export default function LoginScreen() {
         placeholder="you@example.com"
       />
       <FormInput label="Mật khẩu" value={password} onChangeText={setPassword} secureTextEntry placeholder="••••••••" />
+      <Link href="/(auth)/forgot-password" style={[styles.forgotLink, { color: colors.primary }]}>
+        Quên mật khẩu?
+      </Link>
       {error ? <Text style={[styles.error, { color: colors.danger }]}>{error}</Text> : null}
 
       <PrimaryButton title="Đăng nhập" onPress={handleSubmit} loading={loading} />
@@ -66,6 +69,13 @@ const styles = StyleSheet.create({
   },
   error: {
     fontSize: 13,
+  },
+  forgotLink: {
+    alignSelf: 'flex-end',
+    fontSize: 13,
+    fontWeight: '600',
+    marginTop: -4,
+    marginBottom: 8,
   },
   link: {
     textAlign: 'center',
