@@ -28,6 +28,16 @@ vì đây là khai báo gắn với tài khoản nhà phát triển của bạn 
   - Email: `dongpv168@gmail.com`
   - Website / Privacy policy: `https://dongpv168-afk.github.io/daily-tracker/privacy-policy.html`
 
+## 2b. Developer page (Store settings → Developer page details)
+
+Trang giới thiệu nhà phát triển (hiện ở đầu mọi listing app của bạn) — không bắt buộc để
+publish nhưng nên điền cho chuyên nghiệp:
+
+- **Developer icon** (512×512): `docs/dev-profile-icon-512.png`
+- **Developer header image** (4096×2304): `docs/dev-header-4096x2304.png`
+- **About**: có thể dùng đoạn ngắn, ví dụ:
+  `Phát triển các ứng dụng năng suất gọn nhẹ, tập trung vào trải nghiệm đơn giản và riêng tư.`
+
 ## 3. App content (Grow → App content)
 
 Đây là các mục bắt buộc trước khi publish, kể cả lên Internal testing.
