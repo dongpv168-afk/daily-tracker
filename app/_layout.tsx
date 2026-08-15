@@ -32,6 +32,7 @@ export default function RootLayout() {
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Protected guard={isSignedIn}>
           <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="edit-profile" options={{ presentation: 'modal' }} />
           <Stack.Screen name="todo/[id]" options={{ presentation: 'modal' }} />
           <Stack.Screen name="habit/[id]" options={{ presentation: 'modal' }} />
           <Stack.Screen name="transaction/[id]" options={{ presentation: 'modal' }} />

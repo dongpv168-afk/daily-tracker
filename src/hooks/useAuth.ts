@@ -17,5 +17,11 @@ export function useAuthListener() {
 export function useAuth() {
   const user = useAuthStore((state) => state.user);
   const isInitializing = useAuthStore((state) => state.isInitializing);
-  return { user, isInitializing, isSignedIn: !!user };
+  // Subscribed so profile edits (which mutate `user` in place) still trigger a re-render here —
+  // see profileVersion's doc comment in authStore.
+  useAuthStore((state) => state.profileVersion);
+  // Firebase's updateProfile() mutates auth.currentUser in place but doesn't reliably fire
+  // onAuthStateChanged — call this after such an update so screens re-render with the new value.
+  const refreshUser = () => useAuthStore.getState().bumpProfile();
+  return { user, isInitializing, isSignedIn: !!user, refreshUser };
 }

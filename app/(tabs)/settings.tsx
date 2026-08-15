@@ -1,4 +1,5 @@
 import Constants from 'expo-constants';
+import { router } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { PrimaryButton } from '@/components/common/PrimaryButton';
@@ -38,6 +39,9 @@ export default function SettingsScreen() {
       <Text style={[styles.label, { color: colors.textMuted }]}>Tài khoản</Text>
       <Text style={[styles.value, { color: colors.text }]}>{user?.displayName || 'Chưa đặt tên'}</Text>
       <Text style={[styles.value, { color: colors.textMuted }]}>{user?.email}</Text>
+      <Pressable onPress={() => router.push('/edit-profile')}>
+        <Text style={[styles.editLink, { color: colors.primary }]}>Sửa thông tin</Text>
+      </Pressable>
 
       <PrimaryButton title="Đăng xuất" onPress={handleSignOut} loading={loading} variant="ghost" />
 
@@ -89,6 +93,11 @@ const styles = StyleSheet.create({
   },
   value: {
     fontSize: 16,
+  },
+  editLink: {
+    fontSize: 13,
+    fontWeight: '600',
+    marginTop: 6,
   },
   themeRow: {
     flexDirection: 'row',

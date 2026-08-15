@@ -29,6 +29,14 @@ export async function signOutUser() {
   await signOut(auth);
 }
 
+/** Updates the signed-in user's display name, in both Firebase Auth and the Firestore profile doc. */
+export async function updateDisplayName(name: string) {
+  if (!auth.currentUser) throw new Error('Not signed in');
+  const trimmed = name.trim();
+  await updateProfile(auth.currentUser, { displayName: trimmed || null });
+  await setDoc(doc(db, 'users', auth.currentUser.uid), { displayName: trimmed || null }, { merge: true });
+}
+
 /**
  * Sends a password reset email. Resolves silently even if the email isn't
  * registered, so the UI can show one generic message and avoid leaking
