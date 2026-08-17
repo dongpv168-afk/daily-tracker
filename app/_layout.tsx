@@ -2,6 +2,7 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { ActivityIndicator, StyleSheet } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Screen } from '@/components/common/Screen';
 import { useAuth, useAuthListener } from '@/hooks/useAuth';
 import { useEffectiveScheme, useThemeColors } from '@/hooks/useThemeColors';
@@ -20,14 +21,16 @@ export default function RootLayout() {
   if (isInitializing) {
     // Waiting on the first onAuthStateChanged callback (session restore from storage).
     return (
-      <Screen style={styles.loading}>
-        <ActivityIndicator color={colors.primary} />
-      </Screen>
+      <GestureHandlerRootView style={styles.flex}>
+        <Screen style={styles.loading}>
+          <ActivityIndicator color={colors.primary} />
+        </Screen>
+      </GestureHandlerRootView>
     );
   }
 
   return (
-    <>
+    <GestureHandlerRootView style={styles.flex}>
       <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Protected guard={isSignedIn}>
@@ -41,11 +44,14 @@ export default function RootLayout() {
           <Stack.Screen name="(auth)" />
         </Stack.Protected>
       </Stack>
-    </>
+    </GestureHandlerRootView>
   );
 }
 
 const styles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  },
   loading: {
     alignItems: 'center',
     justifyContent: 'center',

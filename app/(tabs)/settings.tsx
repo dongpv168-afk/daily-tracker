@@ -8,6 +8,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useThemeColors } from '@/hooks/useThemeColors';
 import { signOutUser } from '@/services/auth.service';
 import { ThemePreference, useThemeStore } from '@/store/themeStore';
+import { hapticSelect } from '@/utils/haptics';
 
 const THEME_OPTIONS: { value: ThemePreference; label: string }[] = [
   { value: 'system', label: 'Theo hệ thống' },
@@ -52,7 +53,10 @@ export default function SettingsScreen() {
           return (
             <Pressable
               key={option.value}
-              onPress={() => setPreference(option.value)}
+              onPress={() => {
+                if (option.value !== preference) hapticSelect();
+                setPreference(option.value);
+              }}
               style={[
                 styles.themeChip,
                 {

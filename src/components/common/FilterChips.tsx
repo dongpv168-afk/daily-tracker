@@ -1,5 +1,6 @@
 import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
 import { useThemeColors } from '@/hooks/useThemeColors';
+import { hapticSelect } from '@/utils/haptics';
 
 /** Horizontal scrollable row of single-select filter chips. Reused across Todos/Habits/Expenses/Stats. */
 export function FilterChips<T extends string>({
@@ -19,7 +20,10 @@ export function FilterChips<T extends string>({
         return (
           <Pressable
             key={opt.value}
-            onPress={() => onChange(opt.value)}
+            onPress={() => {
+              if (opt.value !== value) hapticSelect();
+              onChange(opt.value);
+            }}
             style={[
               styles.chip,
               {

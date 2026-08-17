@@ -1,8 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { SwipeableRow } from '@/components/common/SwipeableRow';
 import { useThemeColors } from '@/hooks/useThemeColors';
 import type { Habit } from '@/types/habit';
 import type { StreakInfo } from '@/utils/streaks';
+import { hapticToggle } from '@/utils/haptics';
 
 export function HabitListItem({
   habit,
@@ -23,40 +25,42 @@ export function HabitListItem({
   onDelete: () => void;
 }) {
   const colors = useThemeColors();
+
+  function handleToggle() {
+    hapticToggle();
+    onToggleToday();
+  }
+
   return (
-    <Pressable onPress={onPress} style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-      <View style={styles.topRow}>
-        <View style={styles.nameArea}>
-          <Text style={[styles.name, { color: colors.text }]} numberOfLines={1}>
-            {habit.name}
-          </Text>
-          <View style={styles.streakRow}>
-            <Ionicons name="flame" size={14} color={streak.current > 0 ? colors.warning : colors.textMuted} />
-            <Text style={[styles.streakText, { color: colors.textMuted }]}>
-              {streak.current} ngày liên tiếp · dài nhất {streak.longest}
+    <SwipeableRow onDelete={onDelete}>
+      <Pressable onPress={onPress} style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+        <View style={styles.topRow}>
+          <View style={styles.nameArea}>
+            <Text style={[styles.name, { color: colors.text }]} numberOfLines={1}>
+              {habit.name}
             </Text>
+            <View style={styles.streakRow}>
+              <Ionicons name="flame" size={14} color={streak.current > 0 ? colors.warning : colors.textMuted} />
+              <Text style={[styles.streakText, { color: colors.textMuted }]}>
+                {streak.current} ngày liên tiếp · dài nhất {streak.longest}
+              </Text>
+            </View>
           </View>
+          <Pressable onPress={handleToggle} hitSlop={8}>
+            <Ionicons
+              name={completedToday ? 'checkmark-circle' : 'ellipse-outline'}
+              size={28}
+              color={completedToday ? colors.success : colors.textMuted}
+            />
+          </Pressable>
         </View>
-        <Pressable onPress={onToggleToday} hitSlop={8}>
-          <Ionicons
-            name={completedToday ? 'checkmark-circle' : 'ellipse-outline'}
-            size={28}
-            color={completedToday ? colors.success : colors.textMuted}
-          />
-        </Pressable>
-        <Pressable onPress={onDelete} hitSlop={8} style={styles.deleteButton}>
-          <Ionicons name="trash-outline" size={18} color={colors.textMuted} />
-        </Pressable>
-      </View>
-      <View style={styles.dotsRow}>
-        {last7Days.map((done, i) => (
-          <View
-            key={i}
-            style={[styles.dot, { backgroundColor: done ? colors.success : colors.border }]}
-          />
-        ))}
-      </View>
-    </Pressable>
+        <View style={styles.dotsRow}>
+          {last7Days.map((done, i) => (
+            <View key={i} style={[styles.dot, { backgroundColor: done ? colors.success : colors.border }]} />
+          ))}
+        </View>
+      </Pressable>
+    </SwipeableRow>
   );
 }
 
@@ -87,9 +91,6 @@ const styles = StyleSheet.create({
   },
   streakText: {
     fontSize: 12,
-  },
-  deleteButton: {
-    paddingLeft: 4,
   },
   dotsRow: {
     flexDirection: 'row',
